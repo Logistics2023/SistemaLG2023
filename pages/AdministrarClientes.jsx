@@ -167,7 +167,8 @@ function Users() {
     }
     
     
-    function generateLGC () {
+    function generateLGC (e) {
+     e.preventDefault()
         setLGC(`LGC${counter}`)
         setUserPdfData({...pdfData, ['AD-DNI']: `LGC${counter}`})
         }
