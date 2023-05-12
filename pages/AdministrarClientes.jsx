@@ -395,6 +395,7 @@ function Users() {
                 </div>}
                 {success == 'save' && <Success>Correcto</Success>}
                 {success == 'repeat' && <Error>Verifica e intenta de nuevo</Error>}
+                {success == 'Complete' && <Error>Completa el formulario</Error>}
             </div>
         </Layout>
     )
