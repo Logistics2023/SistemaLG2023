@@ -127,12 +127,16 @@ function CotizacionTerrestre() {
     }
 
 
+    function round(num) {
+        var m = Number((Math.abs(num) * 100).toPrecision(15));
+        return Math.round(m) / 100 * Math.sign(num);
+    }
+
     function reducer(e, index, counter, prod, total) {
         let product = e.target.value * calc[`${counter}${index}`]
-
         let data = {
             ...calc,
-            [e.target.name]: e.target.value,
+            [e.target.name]:  e.target.value,
             [`${prod}${index}`]: product,
         }
 
@@ -143,15 +147,19 @@ function CotizacionTerrestre() {
             if (str.includes(total)) {
                 return ac
             }
+            if (prod == 'PRODUCT' && str.includes('PRODUCTFLETE')) {
+                return ac
+            }
             let res = str.includes(prod)
-            let r = res ? i[1] + ac : ac
+            let r = res ? i[1] * 1 + ac * 1 : ac * 1
             return r
         }, 0)
 
         let object = {
             [e.target.name]: e.target.value,
-            [`${prod}${index}`]: product,
-            PRODUCTOTOTAL: prod === 'PRODUCT' ? red : data['PRODUCTOTOTAL'],
+            [`${prod}${index}`]: round(product).toFixed(2) ,
+            PRODUCTOFLETETOTAL: prod === 'PRODUCTFLETE' ? round(red).toFixed(2)  : data['PRODUCTOFLETETOTAL'],
+            PRODUCTOTOTAL: prod === 'PRODUCT' ? round(red).toFixed(2)  : data['PRODUCTOTOTAL'],
         }
         return object
     }
