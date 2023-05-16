@@ -412,10 +412,11 @@ const PDFView = ({ click }) => {
                                     <View style={styles.viewKeyValueTwo} key={index}>
 
 
-                                        <Text style={styles.value}>{pdfData && pdfData[`CA-DETALLE${index}`] && pdfData[`CA-DETALLE${index}`]}</Text>
-                                        <Text style={styles.value}>{pdfData && pdfData[`FLETEUNITARIO${index}`] && pdfData[`FLETEUNITARIO${index}`]}</Text>
-                                        <Text style={styles.value}>{pdfData && pdfData[`CANTIDADFLETE${index}`] && pdfData[`CANTIDADFLETE${index}`]}</Text>
-                                        <Text style={styles.value}>{pdfData && pdfData[`PRODUCTFLETE${index}`] && pdfData[`PRODUCTFLETE${index}`]}</Text>
+
+                                        <Text style={styles.value}>{pdfData && pdfData[`CT-DETALLE${index}`] && pdfData[`CT-DETALLE${index}`]}</Text>
+                                        <Text style={styles.value}>{pdfData && pdfData[`COSTOUNITARIO${index}`] && pdfData[`COSTOUNITARIO${index}`]}</Text>
+                                        <Text style={styles.value}>{pdfData && pdfData[`CANTIDAD${index}`] && pdfData[`CANTIDAD${index}`]}</Text>
+                                        <Text style={styles.value}>{pdfData && pdfData[`PRODUCT${index}`] && pdfData[`PRODUCT${index}`]}</Text>
 
 
 
@@ -438,7 +439,7 @@ const PDFView = ({ click }) => {
 
                         <View style={styles.viewKeyValueTwoYellow} >
                             <Text style={styles.noValueYellow}>Costo Total</Text>
-                            <Text style={styles.valueYellow}>{pdfData.PRODUCTOTOTAL && pdfData.PRODUCTOFLETETOTAL ? pdfData.PRODUCTOTOTAL + pdfData.PRODUCTOFLETETOTAL : (pdfData.PRODUCTOTOTAL ? pdfData.PRODUCTOTOTAL : (pdfData.PRODUCTOFLETETOTAL && pdfData.PRODUCTOFLETETOTAL))}</Text>
+                            <Text style={styles.valueYellow}>{pdfData.PRODUCTOTOTAL && pdfData.PRODUCTOFLETETOTAL ? (pdfData.PRODUCTOTOTAL * 1 + pdfData.PRODUCTOFLETETOTAL * 1).toFixed(2) : (pdfData.PRODUCTOTOTAL ? pdfData.PRODUCTOTOTAL : (pdfData.PRODUCTOFLETETOTAL && pdfData.PRODUCTOFLETETOTAL))}</Text>
                         </View>
 
 
@@ -494,8 +495,8 @@ const PDFView = ({ click }) => {
                 </Document>}
                 fileName={`COTIZACIÓN AEREA ${pdfData && pdfData[`CA-COTIZACION No`] && pdfData[`CA-COTIZACION No`]}`}>
 
-                    <Button style={'buttonSecondaryPDF'} click={click}>pdf</Button>
-            
+                <Button style={'buttonSecondaryPDF'} click={click}>pdf</Button>
+
             </PDFDownloadLink>}
         </div>
     )
