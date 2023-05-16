@@ -6,7 +6,7 @@ export function UserProvider ({ children }) {
 
 	const [user, setUser] = useState(undefined)
 	const [userDB, setUserDB] = useState('')
-	const [pdfData, setPdfData] = useState({})
+	const [pdfData, setPdfData] = useState({tarifa: [''], otrosGastos: ['']})
 	const [specificData, setSpecificData] = useState(null)
 	const [specificDataEditable, setSpecificDataEditable] = useState(null)
 	const [success, setSuccess] = useState(null)
