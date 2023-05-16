@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
 
     },
     noValue: {
-        width: "50%",
+        width: "100%",
         height: "12px",
         padding: "2px 5px 0px 5px ",
         border: "0.5px solid #294B98",
