@@ -19,7 +19,7 @@ const InvoicePDF = dynamic(() => import("../components/pdfCA"), {
 });
 
 function CotizacionTerrestre() {
-    const {user, userDB, pdfData, setUserPdfData, setUserSuccess } = useUser()
+    const { user, userDB, pdfData, setUserPdfData, setUserSuccess } = useUser()
     const router = useRouter()
 
     const [tarifa, setTarifa] = useState([""])
@@ -131,9 +131,13 @@ function CotizacionTerrestre() {
 
     }
 
+    function round(num) {
+        var m = Number((Math.abs(num) * 100).toPrecision(15));
+        return Math.round(m) / 100 * Math.sign(num);
+    }
+
     function reducer(e, index, counter, prod, total) {
         let product = e.target.value * calc[`${counter}${index}`]
-
         let data = {
             ...calc,
             [e.target.name]: e.target.value,
@@ -151,15 +155,15 @@ function CotizacionTerrestre() {
                 return ac
             }
             let res = str.includes(prod)
-            let r = res ? i[1] + ac : ac
+            let r = res ? i[1] * 1 + ac * 1 : ac * 1
             return r
         }, 0)
 
         let object = {
             [e.target.name]: e.target.value,
-            [`${prod}${index}`]: product,
-            PRODUCTOFLETETOTAL: prod === 'PRODUCTFLETE' ? red : data['PRODUCTOFLETETOTAL'],
-            PRODUCTOTOTAL: prod === 'PRODUCT' ? red : data['PRODUCTOTOTAL'],
+            [`${prod}${index}`]: round(product).toFixed(2),
+            PRODUCTOFLETETOTAL: prod === 'PRODUCTFLETE' ? round(red).toFixed(2) : data['PRODUCTOFLETETOTAL'],
+            PRODUCTOTOTAL: prod === 'PRODUCT' ? round(red).toFixed(2) : data['PRODUCTOTOTAL'],
         }
         return object
     }
@@ -421,7 +425,7 @@ function CotizacionTerrestre() {
                         tarifa.map((i, index) => {
                             return (
                                 <div className={`${style.inputs}`} key={index}>
-                                    <input type="text" name={`DETALLEFLETE${index}`}  placeholder="DETALLE" onChange={handleEventChange}  />
+                                    <input type="text" name={`DETALLEFLETE${index}`} placeholder="DETALLE" onChange={handleEventChange} />
                                     <input type="number" name={`FLETEUNITARIO${index}`} onChange={(e) => handlerCalc(e, index)} defaultValue={calc[`FLETEUNITARIO${index}`] && calc[`FLETEUNITARIO${index}`]} placeholder="FLETE KG" />
                                     <input type="number" name={`CANTIDADFLETE${index}`} onChange={(e) => handlerCalc(e, index)} defaultValue={calc[`CANTIDADFLETE${index}`] && calc[`CANTIDADFLETE${index}`]} placeholder="W/M" />
                                     <input type="text" defaultValue={calc[`PRODUCTFLETE${index}`] && calc[`PRODUCTFLETE${index}`]} placeholder="FLETE TOTAL" />
@@ -448,7 +452,7 @@ function CotizacionTerrestre() {
                         otrosGastos.map((i, index) => {
                             return (
                                 <div className={`${style.inputs}`} key={index}>
-                                    <input type="text" name={`DETALLE${index}`}  onChange={handleEventChange}   placeholder="DETALLE" />
+                                    <input type="text" name={`DETALLE${index}`} onChange={handleEventChange} placeholder="DETALLE" />
                                     <input type="number" name={`COSTOUNITARIO${index}`} onChange={(e) => handlerCalc(e, index)} defaultValue={calc[`COSTOUNITARIO${index}`] && calc[`COSTOUNITARIO${index}`]} placeholder="COSTO UNITARIO" />
                                     <input type="number" name={`CANTIDAD${index}`} onChange={(e) => handlerCalc(e, index)} defaultValue={calc[`CANTIDAD${index}`] && calc[`CANTIDAD${index}`]} placeholder="CANTIDAD" />
                                     <input type="number" defaultValue={calc[`PRODUCT${index}`] && calc[`PRODUCT${index}`]} placeholder="COSTO TOTAL" />
@@ -466,7 +470,7 @@ function CotizacionTerrestre() {
                     <br />
 
                     <div className={style.inputsSemi}>
-                        <label htmlFor="">Costo Total</label><input type="text" defaultValue={calc.PRODUCTOTOTAL && calc.PRODUCTOFLETETOTAL ? calc.PRODUCTOTOTAL + calc.PRODUCTOFLETETOTAL : (calc.PRODUCTOTOTAL ? calc.PRODUCTOTOTAL : (calc.PRODUCTOFLETETOTAL && calc.PRODUCTOFLETETOTAL))} />
+                        <label htmlFor="">Costo Total</label><input type="text" defaultValue={(calc.PRODUCTOTOTAL && calc.PRODUCTOFLETETOTAL ? (calc.PRODUCTOTOTAL * 1 + calc.PRODUCTOFLETETOTAL * 1).toFixed(2) : (calc.PRODUCTOTOTAL ? calc.PRODUCTOTOTAL : (calc.PRODUCTOFLETETOTAL && calc.PRODUCTOFLETETOTAL)))} />
                     </div>
 
                     <br />
