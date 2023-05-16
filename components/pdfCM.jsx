@@ -476,7 +476,7 @@ const PDFView = ({ click }) => {
 
                         <View style={styles.viewKeyValueTwoYellow} >
                             <Text style={styles.noValueYellow}>Costo Total</Text>
-                            <Text style={styles.valueYellow}>{pdfData.PRODUCTOTOTAL && pdfData.PRODUCTOFLETETOTAL ? pdfData.PRODUCTOTOTAL + pdfData.PRODUCTOFLETETOTAL : (pdfData.PRODUCTOTOTAL ? pdfData.PRODUCTOTOTAL : (pdfData.PRODUCTOFLETETOTAL && pdfData.PRODUCTOFLETETOTAL))}</Text>
+                            <Text style={styles.valueYellow}>{pdfData.PRODUCTOTOTAL && pdfData.PRODUCTOFLETETOTAL ? (pdfData.PRODUCTOTOTAL * 1 + pdfData.PRODUCTOFLETETOTAL * 1).toFixed(2) : (pdfData.PRODUCTOTOTAL ? pdfData.PRODUCTOTOTAL : (pdfData.PRODUCTOFLETETOTAL && pdfData.PRODUCTOFLETETOTAL))}</Text>
                         </View>
 
 
