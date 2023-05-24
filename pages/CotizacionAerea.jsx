@@ -484,7 +484,9 @@ function CotizacionTerrestre() {
                     <br />
 
                     <div className={style.inputsSemi}>
-                        <label htmlFor="">Costo Total</label><input type="text" defaultValue={(calc.PRODUCTOTOTAL && calc.PRODUCTOFLETETOTAL ? (calc.PRODUCTOTOTAL * 1 + calc.PRODUCTOFLETETOTAL * 1).toFixed(2) : (calc.PRODUCTOTOTAL ? calc.PRODUCTOTOTAL : (calc.PRODUCTOFLETETOTAL && calc.PRODUCTOFLETETOTAL)))} />
+
+                        <label htmlFor="">Costo Total</label><input type="text" defaultValue={calc.sumaTotal} />
+
                     </div>
 
                     <br />
