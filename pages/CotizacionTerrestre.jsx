@@ -188,10 +188,10 @@ function CotizacionTerrestre() {
 
         let mainObj = {...calc, ...object}
 
-        let sumaTotal = mainObj.PRODUCTOTOTAL && mainObj.PRODUCTOFLETETOTAL ? (mainObj.PRODUCTOTOTAL.replaceAll(',', '') *1 + mainObj.PRODUCTOFLETETOTAL.replaceAll(',', '') *1).toFixed(2): (mainObj.PRODUCTOTOTAL ? mainObj.PRODUCTOTOTAL : (mainObj.PRODUCTOFLETETOTAL && mainObj.PRODUCTOFLETETOTAL))
+        let sumaTotal = mainObj.PRODUCTOTOTAL !== undefined && mainObj.PRODUCTOFLETETOTAL !==undefined  ? (mainObj.PRODUCTOTOTAL.replaceAll(',', '') *1 + mainObj.PRODUCTOFLETETOTAL.replaceAll(',', '') *1).toFixed(2): (mainObj.PRODUCTOTOTAL ? mainObj.PRODUCTOTOTAL : (mainObj.PRODUCTOFLETETOTAL && mainObj.PRODUCTOFLETETOTAL))
 
 
-        return {...mainObj, sumaTotal: formatoMexico(round(sumaTotal).toFixed(2)),}
+        return {...mainObj, sumaTotal: formatoMexico(sumaTotal)}
     }
 
 
