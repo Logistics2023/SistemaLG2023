@@ -136,12 +136,19 @@ function CotizacionTerrestre() {
         return Math.round(m) / 100 * Math.sign(num);
     }
 
+    const formatoMexico = (number) => {
+        const exp = /(\d)(?=(\d{3})+(?!\d))/g;
+        const rep = '$1,';
+        let arr = number.toString().split('.');
+        arr[0] = arr[0].replace(exp,rep);
+        return arr[1] ? arr.join('.'): arr[0];
+      }
     function reducer(e, index, counter, prod, total) {
-        let product = e.target.value * calc[`${counter}${index}`]
+        let product = e.target.value * calc[`${counter}${index}`].replaceAll(',', '')
         let data = {
             ...calc,
-            [e.target.name]: e.target.value,
-            [`${prod}${index}`]: product,
+            [e.target.name]:   e.target.name.includes('UNITARIO') ? formatoMexico(round(e.target.value).toFixed(2)) : e.target.value ,
+            [`${prod}${index}`]: formatoMexico(round(product).toFixed(2)),
         }
 
         let arr = Object.entries(data)
@@ -155,18 +162,25 @@ function CotizacionTerrestre() {
                 return ac
             }
             let res = str.includes(prod)
-            let r = res ? i[1] * 1 + ac * 1 : ac * 1
+            let r = res ? i[1].replaceAll(',', '') * 1 + ac * 1 : ac * 1
             return r
         }, 0)
 
         let object = {
-            [e.target.name]: e.target.value,
-            [`${prod}${index}`]: round(product).toFixed(2),
-            PRODUCTOFLETETOTAL: prod === 'PRODUCTFLETE' ? round(red).toFixed(2) : data['PRODUCTOFLETETOTAL'],
-            PRODUCTOTOTAL: prod === 'PRODUCT' ? round(red).toFixed(2) : data['PRODUCTOTOTAL'],
+            [e.target.name]: e.target.name.includes('UNITARIO') ? formatoMexico(round(e.target.value).toFixed(2)) : e.target.value ,
+            [`${prod}${index}`]: formatoMexico(round(product).toFixed(2)) ,
+            PRODUCTOFLETETOTAL: prod === 'PRODUCTFLETE' ? formatoMexico(round(red).toFixed(2))  : data['PRODUCTOFLETETOTAL'],
+            PRODUCTOTOTAL: prod === 'PRODUCT' ? formatoMexico(round(red).toFixed(2))  : data['PRODUCTOTOTAL'],
         }
-        return object
+
+        let mainObj = {...calc, ...object}
+
+        let sumaTotal = mainObj.PRODUCTOTOTAL !== undefined && mainObj.PRODUCTOFLETETOTAL !==undefined  ? (mainObj.PRODUCTOTOTAL.replaceAll(',', '') *1 + mainObj.PRODUCTOFLETETOTAL.replaceAll(',', '') *1).toFixed(2): (mainObj.PRODUCTOTOTAL ? mainObj.PRODUCTOTOTAL : (mainObj.PRODUCTOFLETETOTAL && mainObj.PRODUCTOFLETETOTAL))
+
+
+        return {...mainObj, sumaTotal: formatoMexico(sumaTotal)}
     }
+
     function handleFilterChange(e) {
         setFilter(e.target.value)
     }
