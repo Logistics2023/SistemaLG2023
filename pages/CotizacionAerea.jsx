@@ -123,7 +123,7 @@ function CotizacionTerrestre() {
         }
 
         let object = {
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.target.name.includes('UNITARIO') ? formatoMexico(round(e.target.value).toFixed(2)) : e.target.value,
 
         }
         setCalc({ ...calc, ...object })
