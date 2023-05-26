@@ -485,8 +485,8 @@ function CotizacionMaritima() {
                             <label htmlFor="">SERVICIO</label>
                             <select name="SERVICIO" onChange={handleEventChange}>
                                 <option value="">Seleccione una opcion</option>
-                                <option value="20`OT">EXPORTACIÓN</option>
-                                <option value="20`OT">IMPORTACIÓN</option>
+                                <option value="EXPORTACIÓN">EXPORTACIÓN</option>
+                                <option value="IMPORTACIÓN">IMPORTACIÓN</option>
                             </select>
                         </div>
                     </div>
