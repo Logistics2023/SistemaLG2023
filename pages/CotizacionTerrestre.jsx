@@ -454,7 +454,7 @@ function CotizacionTerrestre() {
                         </div>
                         <div>
                             <label htmlFor="">*CANTIDAD</label>
-                            <input type="text" name={"CANTIDAD"} onChange={handleEventChange} />
+                            <input type="text" name={"CANTIDAD SERVICIOS"} onChange={handleEventChange} />
                         </div>
 
                         <div>
