@@ -369,7 +369,7 @@ const PDFView = ({ click }) => {
                             <View style={styles.viewKeyValue}>
                                 <View style={styles.viewKeyValue}>
                                     <Text style={styles.key}>*CANTIDAD</Text>
-                                    <Text style={styles.value}>{pdfData && pdfData["CT-CANTIDAD SERVICIOSD"] && pdfData["CT-CANTIDAD SERVICIOS"]}</Text>
+                                    <Text style={styles.value}>{pdfData && pdfData["CT-CANTIDAD SERVICIOS"] && pdfData["CT-CANTIDAD SERVICIOS"]}</Text>
                                 </View>
 
                                 <View style={styles.viewKeyValue}>
