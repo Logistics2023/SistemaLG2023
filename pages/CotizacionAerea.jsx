@@ -466,7 +466,7 @@ function CotizacionTerrestre() {
                         otrosGastos.map((i, index) => {
                             return (
                                 <div className={`${style.inputs}`} key={index}>
-                                    <input type="text" name={`DETALLE${index}`} onChange={handleEventChange} placeholder="DETALLE" />
+                                    <input type="text" name={`DETALLEADICIONAL${index}`} onChange={handleEventChange} placeholder="DETALLE" />
                                     <input type="number" name={`COSTOUNITARIO${index}`} onChange={(e) => handlerCalc(e, index)} defaultValue={calc[`COSTOUNITARIO${index}`] && calc[`COSTOUNITARIO${index}`]} placeholder="COSTO UNITARIO" />
                                     <input type="number" name={`CANTIDAD${index}`} onChange={(e) => handlerCalc(e, index)} defaultValue={calc[`CANTIDAD${index}`] && calc[`CANTIDAD${index}`]} placeholder="CANTIDAD" />
                                     <input type="number" defaultValue={calc[`PRODUCT${index}`] && calc[`PRODUCT${index}`]} placeholder="COSTO TOTAL" />
