@@ -376,7 +376,7 @@ const PDFView = ({ click }) => {
                                 return (
 
                                     <View style={styles.viewKeyValueTwo} key={index}>
-                                        <Text style={styles.value}>{pdfData && pdfData[`CA-DETALLEFLETE${index}`] && pdfData[`CA-DETALLEFLETE${index}`]}</Text>
+                                        <Text style={styles.value}>{pdfData && pdfData[`CA-DETALLE${index}`] && pdfData[`CA-DETALLE${index}`]}</Text>
                                         <Text style={styles.value}>{pdfData && pdfData[`FLETEUNITARIO${index}`] && pdfData[`FLETEUNITARIO${index}`]}</Text>
                                         <Text style={styles.value}>{pdfData && pdfData[`CANTIDADFLETE${index}`] && pdfData[`CANTIDADFLETE${index}`]}</Text>
                                         <Text style={styles.value}>{pdfData && pdfData[`PRODUCTFLETE${index}`] && pdfData[`PRODUCTFLETE${index}`]}</Text>
