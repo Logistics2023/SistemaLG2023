@@ -1,7 +1,7 @@
 import style from '../styles/Button.module.css' 
 
 export default function Button (props) {
-    return (
+    return (     
              <button 
                 className={`${style.button} ${style[props.style]}`}
                 onClick={props.click}> 
